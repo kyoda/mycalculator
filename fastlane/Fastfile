@@ -1,0 +1,20 @@
+default_platform :android
+
+platform :android do
+  before_all do
+  end
+
+  desc "Runs the empty"
+  lane :emp do
+    sh "echo"
+  end
+
+  desc "take screenshot"
+  lane :screen do
+    gradle(task: "clean assembleDebug assembleAndroidTest")
+    screengrab
+  end
+
+
+end
+

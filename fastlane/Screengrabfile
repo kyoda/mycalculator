@@ -1,0 +1,8 @@
+locales ['ja-JP']
+ending_locale "ja-JP"
+app_package_name 'com.example.kyoda.myapplication'
+app_apk_path 'app/build/outputs/apk/app-debug.apk'
+tests_apk_path 'app/build/outputs/apk/app-debug-androidTest.apk'
+output_directory 'fastlane/screenshots'
+exit_on_test_failure false
+clear_previous_screenshots true
