@@ -6,7 +6,6 @@ package com.example.kyoda.myapplication;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import java.math.BigDecimal;
@@ -27,7 +26,7 @@ import android.util.Log;
 */
 
 
-public class OnClickMainActivity extends MainActivity implements View.OnClickListener {
+public class OnClickMainActivity extends MainActivity {
 
 
     private TextView mon;
@@ -48,28 +47,127 @@ public class OnClickMainActivity extends MainActivity implements View.OnClickLis
         mon = (TextView)findViewById(R.id.textView0);
         buf = new StringBuilder();
 
-        findViewById(R.id.button0).setOnClickListener(this);
-        findViewById(R.id.button1).setOnClickListener(this);
-        findViewById(R.id.button2).setOnClickListener(this);
-        findViewById(R.id.button3).setOnClickListener(this);
-        findViewById(R.id.button4).setOnClickListener(this);
-        findViewById(R.id.button5).setOnClickListener(this);
-        findViewById(R.id.button6).setOnClickListener(this);
-        findViewById(R.id.button7).setOnClickListener(this);
-        findViewById(R.id.button8).setOnClickListener(this);
-        findViewById(R.id.button9).setOnClickListener(this);
 
-        findViewById(R.id.buttonAdd).setOnClickListener(this);
-        findViewById(R.id.buttonSub).setOnClickListener(this);
-        findViewById(R.id.buttonMul).setOnClickListener(this);
-        findViewById(R.id.buttonDiv).setOnClickListener(this);
+        findViewById(R.id.button0).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numberClickEvent("0");
+            }
+        });
+        findViewById(R.id.button1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numberClickEvent("1");
+            }
+        });
+        findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numberClickEvent("2");
+            }
+        });
+        findViewById(R.id.button3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numberClickEvent("3");
+            }
+        });
+        findViewById(R.id.button4).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numberClickEvent("4");
+            }
+        });
+        findViewById(R.id.button5).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numberClickEvent("5");
+            }
+        });
+        findViewById(R.id.button6).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numberClickEvent("6");
+            }
+        });
+        findViewById(R.id.button7).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numberClickEvent("7");
+            }
+        });
+        findViewById(R.id.button8).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numberClickEvent("8");
+            }
+        });
+        findViewById(R.id.button9).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numberClickEvent("9");
+            }
+        });
 
-        findViewById(R.id.buttonEqual).setOnClickListener(this);
-        findViewById(R.id.buttonC).setOnClickListener(this);
-        findViewById(R.id.buttonCE).setOnClickListener(this);
+        findViewById(R.id.buttonAdd).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ope = "add";
+                operationClickEvent();
+            }
+        });
+        findViewById(R.id.buttonSub).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ope = "sub";
+                operationClickEvent();
+            }
+        });
+        findViewById(R.id.buttonMul).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ope = "mul";
+                operationClickEvent();
+            }
+        });
+        findViewById(R.id.buttonDiv).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ope = "div";
+                operationClickEvent();
+            }
+        });
 
-        findViewById(R.id.buttonDot).setOnClickListener(this);
-        findViewById(R.id.buttonMinus).setOnClickListener(this);
+        findViewById(R.id.buttonEqual).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                equalClickEvent();
+            }
+        });
+        findViewById(R.id.buttonC).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cClickEvent();
+            }
+        });
+        findViewById(R.id.buttonCE).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ceClickEvent();
+            }
+        });
+        findViewById(R.id.buttonDot).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dotClickEvent();
+            }
+        });
+        findViewById(R.id.buttonMinus).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                minusClickEvent();
+            }
+        });
 
 
         cClickEvent();
@@ -77,45 +175,7 @@ public class OnClickMainActivity extends MainActivity implements View.OnClickLis
     }
 
 
-
-    @Override
-    public void onClick(View v) {
-        if (v != null) {
-            Button b = (Button)v;
-            String s = b.getText().toString();
-
-            switch (s) {
-                case "+":
-                case "-":
-                case "x":
-                case "÷":
-                    operationClickEvent(s);
-                    break;
-                case "=":
-                    equalClickEvent();
-                    break;
-                case "C":
-                    cClickEvent();
-                    break;
-                case "CE":
-                    ceClickEvent();
-                    break;
-                case ".":
-                    dotClickEvent();
-                    break;
-                case "+/-":
-                    minusClickEvent();
-                    break;
-                default:
-                    numberClickEvent(b);
-                    break;
-            }
-
-        }
-    }
-
-    private void operationClickEvent(String s) {
-        ope = s;
+    private void operationClickEvent() {
         if (buf.length() > 0) {
             hidari = new BigDecimal(buf.toString());
             buf.setLength(0);
@@ -123,19 +183,20 @@ public class OnClickMainActivity extends MainActivity implements View.OnClickLis
     }
 
     private void equalClickEvent() {
-        if (buf.length() > 0
-                && !(ope.isEmpty())
-                && !(buf.length() == 1 && buf.charAt(0) == '0')) {
+
+
+        if (buf.length() > 0 && ope != null) {
 
             migi = new BigDecimal(buf.toString());
             double res = cal(hidari, migi, ope);
-            if (res == (long) res) {
+            if (res == (long)res) {
                 mon.setText(String.format(Locale.US, "%d", (long) res));
             } else {
                 mon.setText(String.format("%s", res));
             }
 
         }
+
     }
 
     private void initValue() {
@@ -174,32 +235,34 @@ public class OnClickMainActivity extends MainActivity implements View.OnClickLis
         }
     }
 
-    private void numberClickEvent(Button b) {
+    private void numberClickEvent(String num) {
         //Log.d("implements v", v.getContext().toString());
-
-        if (!(buf.length() == 1 && Integer.parseInt(buf.toString()) == 0)) {
-            buf.append(b.getText().toString());
+        if (!(buf.length() == 1 && buf.toString().equals("0"))) {
+            buf.append(num);
             mon.setText(String.format("%s", buf.toString()));
         }
-
     }
 
-    private double cal(BigDecimal h, BigDecimal m, String ope) {
+    private double cal(BigDecimal h, BigDecimal m, String op) {
 
         BigDecimal r = new BigDecimal(0);
 
-        switch (ope) {
-            case "+":
+        switch (op) {
+            case "add":
                 r = h.add(m);
                 break;
-            case "-":
+            case "sub":
                 r = h.subtract(m);
                 break;
-            case "x":
+            case "mul":
                 r = h.multiply(m);
                 break;
-            case "÷":
-                r = h.divide(m, mc);
+            case "div":
+                if (!m.toString().equals("0")) {
+                    r = h.divide(m, mc);
+                } else {
+                    r = new BigDecimal("99999999999999");
+                }
                 break;
         }
 
